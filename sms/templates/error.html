@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Swaroop Agrochemical</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <div class="header">
+                <h1>Swaroop Agrochemical Industries</h1>
+                <p>Authorized Personnel Management System</p>
+            </div>
+            
+            <div class="form-card">
+                <h2>Error</h2>
+                
+                <div class="error-message" style="margin-bottom: 2rem;">
+                    {{ error }}
+                </div>
+                
+                <div class="form-actions" style="gap: 1rem;">
+                    <a href="/login" class="btn btn-primary">Go to User Login</a>
+                    <a href="/admin/login" class="btn btn-secondary">Go to Admin Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
