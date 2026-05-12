@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Swaroop Agrochemical</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-container">
+            <h1 class="navbar-title">Swaroop Agrochemical Industries</h1>
+            <div class="navbar-actions">
+                <span class="nav-link">{{ session.full_name }}</span>
+                <a href="/logout" class="navbar-logout">Logout</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            <a href="/home" class="breadcrumb-link">Home</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb">Profile</span>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="form-card" style="max-width: 500px; margin: 0 auto;">
+            <h2>Edit Profile</h2>
+            
+            {% if error %}
+            <div class="error-message">{{ error }}</div>
+            {% endif %}
+            
+            {% if success %}
+            <div class="success-message">{{ success }}</div>
+            {% endif %}
+            
+            <form method="POST">
+                <div class="form-group">
+                    <label for="email">Email Address (Read-only)</label>
+                    <input type="email" id="email" value="{{ user[2] }}" disabled>
+                </div>
+                
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <input type="text" id="role" value="{{ user[3] | capitalize }}" disabled>
+                </div>
+                
+                <div class="form-group">
+                    <label for="full_name">Full Name</label>
+                    <input type="text" id="full_name" name="full_name" value="{{ user[1] }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" value="{{ user[4] }}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">Location (State)</label>
+                    <select id="location" name="location" required>
+                        <option value="">Select State</option>
+                        {% for state in states %}
+                        <option value="{{ state }}" {% if user[5] == state %}selected{% endif %}>{{ state }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="designation">Designation</label>
+                    <input type="text" id="designation" name="designation" value="{{ user[6] or '' }}" placeholder="e.g., Manager, Senior Executive" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a href="/home" class="btn btn-secondary" style="text-decoration: none; text-align: center;">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
