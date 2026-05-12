@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Swaroop Agrochemical</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <div class="header">
+                <h1>Swaroop Agrochemical Industries</h1>
+                <p>Authorized Personnel Management System</p>
+            </div>
+            
+            <div class="form-card admin-login">
+                <h2>Admin Portal</h2>
+                
+                {% if error %}
+                <div class="error-message">{{ error }}</div>
+                {% endif %}
+                
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Access Admin Panel</button>
+                </form>
+                
+                <div class="form-footer">
+                    <p><a href="/login">User Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
